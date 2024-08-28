@@ -5,7 +5,7 @@
           <div class="bg-[#FCFCFF] h-[300px] w-full max-w-[550px] flex flex-col justify-between">
               <div class="flex justify-end bg-[#E6E6DF] p-2 gap-2 text-white">
                     <TaskCounter :taskCounter="taskCounter" />
-                  <p class="bg-[#476CAC] rounded-full pl-2 pr-[4px] py-1">Tasks Done <span class="bg-white rounded-full text-[#476CAC] px-[6px]">{{ tasksDoneCounter }}</span></p>
+                    <TaskCounterDone :tasksDoneCounter="tasksDoneCounter"/>
                   <div v-if="tasksDoneCounter >= 1" class="pt-1">
                     <a v-on:click="deleteAllDoneTask" class="bg-[#FC4852] px-2 py-[5px] cursor-pointer"><font-awesome-icon :icon="['fas', 'trash']" /> Tasks Done</a>
                   </div>
@@ -38,6 +38,7 @@
 <script>
 import TaskCounter from './todos/task-counter.vue'
 import TaskItem from './todos/task-item.vue'
+import TaskCounterDone from './todos/task-counter-done.vue'
 
 const task = {
     id: 1,
@@ -48,7 +49,8 @@ const task = {
 export default {
     components:{
        TaskCounter,
-       TaskItem
+       TaskItem,
+       TaskCounterDone
     },
     data() {
         return {
