@@ -6,7 +6,7 @@
     >
         <font-awesome-icon 
         :icon="['fas', 'circle-check']" 
-        v-on:click="taskDone(task.id)" 
+        @click="taskDone(task.id)" 
         :class="['text-[#41B883] cursor-pointer', { 'text-[#808080]': task.done }]" 
         />
         {{ task.name }} 
@@ -14,7 +14,7 @@
         :icon="['fas', 'trash']" 
         class="text-[#FC4852] right-4 absolute top-1/2 transform -translate-y-1/2 cursor-pointer"
         v-show="isHovered"
-        v-on:click="deleteTask(task.id)"
+        @click="deleteTask(task.id)"
         />
     </li>
 </template>

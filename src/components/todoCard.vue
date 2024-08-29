@@ -6,10 +6,10 @@
               <div class="flex justify-end bg-[#E6E6DF] p-2 gap-2 text-white">
                     <TaskCounter :taskCounter="taskCounter" />
                     <TaskCounterDone :tasksDoneCounter="tasksDoneCounter"/>
-                  <div v-if="tasksDoneCounter >= 1" class="pt-1">
-                    <a v-on:click="deleteAllDoneTask" class="bg-[#FC4852] px-2 py-[5px] cursor-pointer"><font-awesome-icon :icon="['fas', 'trash']" /> Tasks Done</a>
-                  </div>
-                  <a v-on:click="deleteAlltask" class="bg-[#FC4852] px-2 py-1 cursor-pointer"><font-awesome-icon :icon="['fas', 'trash']" /><i class="fa-solid fa-trash"></i> Tasks</a>
+                    <DeleteTaskDone 
+                    v-if="tasksDoneCounter >= 1"
+                    @deleteAllDoneTask="deleteAllDoneTask"/>
+                    <DeleteTaskAll @deleteAlltask="deleteAlltask" />  
               </div>
               <div class="m-4 h-[250px] overflow-auto">
                   <ul>
@@ -39,6 +39,8 @@
 import TaskCounter from './todos/task-counter.vue'
 import TaskItem from './todos/task-item.vue'
 import TaskCounterDone from './todos/task-counter-done.vue'
+import DeleteTaskDone from './todos/task-delete-done.vue'
+import DeleteTaskAll from './todos/task-delete-all.vue'
 
 const task = {
     id: 1,
@@ -50,7 +52,9 @@ export default {
     components:{
        TaskCounter,
        TaskItem,
-       TaskCounterDone
+       TaskCounterDone,
+       DeleteTaskDone,
+       DeleteTaskAll
     },
     data() {
         return {
