@@ -24,10 +24,8 @@
               </div>
               <div class="bg-[#E6E6DF] p-4">
                   <div class="relative w-full">
-                      <input v-model="task.name" type="text" class="w-full rounded-full p-3 pr-12 outline-[#476CAC] border-2 border-[#476CAC]" placeholder="New Task">
-                      <button v-on:click="newTask" class="absolute right-4 top-1/2 transform -translate-y-1/2">
-                          <font-awesome-icon :icon="['fas', 'circle-plus']" class="text-3xl text-[#476CAC]" />
-                      </button>
+                        <TaskInput :task="task" @newTaskName="newTaskName"/>
+                        <TaskButton @newTask="newTask"/>
                   </div>
               </div>
           </div>
@@ -41,6 +39,8 @@ import TaskItem from './todos/task-item.vue'
 import TaskCounterDone from './todos/task-counter-done.vue'
 import DeleteTaskDone from './todos/task-delete-done.vue'
 import DeleteTaskAll from './todos/task-delete-all.vue'
+import TaskInput from './todos/task-input.vue'
+import TaskButton from './todos/task-button.vue'
 
 const task = {
     id: 1,
@@ -54,7 +54,9 @@ export default {
        TaskItem,
        TaskCounterDone,
        DeleteTaskDone,
-       DeleteTaskAll
+       DeleteTaskAll,
+       TaskInput,
+       TaskButton
     },
     data() {
         return {
@@ -72,6 +74,9 @@ export default {
         }
     },
     methods: {
+        newTaskName(newName) {
+        this.task.name = newName; 
+        },
         newTask() {
             if (this.task.name.trim() === "") return;
   
